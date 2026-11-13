@@ -1,0 +1,299 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Seventy Thirty</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F5F2EB'/%3E%3Crect x='4' y='8' width='24' height='16' fill='none' stroke='%236E685F' stroke-width='2'/%3E%3Crect x='20' y='9' width='7' height='14' fill='%232E3B2B'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="#home" aria-label="Seventy Thirty home">
+      <svg width="24" height="16" viewBox="0 0 24 16" aria-hidden="true"><rect class="b" x=".5" y=".5" width="23" height="15"/><rect class="s" x="16.8" y="1" width="6.2" height="14"/></svg>
+      Seventy Thirty
+    </a>
+    <div class="acct" id="acct" hidden>
+      <a class="me" href="#home" aria-label="Your profile">
+        <span class="avatar sm" role="img" data-h="avatar"></span>
+        <span class="me-t"><span id="who"></span><span id="who-rank"></span></span>
+      </a>
+      <button class="btn btn-quiet btn-sm" type="button" id="signout">Sign out</button>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs" id="tabs" aria-label="Sections" hidden>
+  <div class="wrap tabs-in">
+    <a href="#home" data-tab="home">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-6h4v6"/></svg>
+      <span>Home</span>
+    </a>
+    <a href="#add" data-tab="add">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16"/><path d="M12 8v8M8 12h8"/></svg>
+      <span>Add</span>
+    </a>
+    <a href="#ranks" data-tab="ranks">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4v16M16 4v16M8 8h8M8 12h8M8 16h8"/></svg>
+      <span>Ranks</span>
+    </a>
+    <a href="#badges" data-tab="badges">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="5"/><path d="M9 13l-2 7 5-3 5 3-2-7"/></svg>
+      <span>Badges</span>
+    </a>
+    <a href="#history" data-tab="history">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h9"/></svg>
+      <span>History</span>
+    </a>
+  </div>
+</nav>
+
+<main>
+  <!-- Sign in -->
+  <section class="wrap view" id="view-login">
+    <div class="login">
+      <div>
+        <p class="eyebrow">Personal savings ledger</p>
+        <h1>Keep 30 of every 100 you receive.</h1>
+        <p class="lede">Enter any amount of money. Seventy Thirty shows how much to spend and moves the rest into savings. As your savings grow you climb from Peasant to Emperor and earn badges on the way.</p>
+        <ul class="facts">
+          <li><strong>70% to spend</strong>Your spending allowance from every amount you log.</li>
+          <li><strong>30% to save</strong>Added to your savings total automatically.</li>
+          <li><strong>Savings on your own</strong>Log money you set aside separately, and keep the 70/30 ratio if you want to.</li>
+        </ul>
+      </div>
+      <form class="card" id="login-form" novalidate>
+        <h2>Create your profile</h2>
+        <p class="sub">Use the same name next time to continue where you left off.</p>
+        <div class="field">
+          <label for="f-name">Name</label>
+          <input id="f-name" type="text" maxlength="40" autocomplete="given-name" placeholder="Your first name">
+        </div>
+        <div class="row2 field">
+          <div>
+            <label for="f-age">Age</label>
+            <input id="f-age" type="number" inputmode="numeric" min="10" max="110" placeholder="Years">
+          </div>
+          <div>
+            <label for="f-gender">Gender</label>
+            <select id="f-gender">
+              <option value="">Select</option>
+              <option>Female</option>
+              <option>Male</option>
+              <option>Non-binary</option>
+              <option>Prefer not to say</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-cur">Currency</label>
+          <select id="f-cur">
+            <option value="NPR">NPR, Nepalese rupee</option>
+            <option value="INR">INR, Indian rupee</option>
+            <option value="USD" selected>USD, US dollar</option>
+            <option value="EUR">EUR, Euro</option>
+            <option value="GBP">GBP, British pound</option>
+          </select>
+        </div>
+        <p class="err" id="err-login" role="alert" hidden></p>
+        <button class="btn" type="submit">Start saving</button>
+        <p class="fine mt">Your records stay in this browser. Read the <a href="#privacy">privacy policy</a>.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Home tab -->
+  <section class="wrap view" id="view-home" hidden>
+    <div class="card greet" id="greet" role="status">
+      <div>
+        <p class="eyebrow">Dashboard</p>
+        <h1 id="greet-h"></h1>
+        <p class="msg" id="greet-p"></p>
+      </div>
+      <button class="btn btn-quiet btn-sm" type="button" id="greet-x">Dismiss</button>
+    </div>
+
+    <div class="card profile">
+      <span class="avatar md" role="img" data-h="avatar"></span>
+      <div class="profile-t">
+        <p class="eyebrow">Your profile</p>
+        <p class="pname" id="p-name"></p>
+        <p class="sub" id="p-details"></p>
+      </div>
+      <div class="profile-r">
+        <p class="eyebrow" data-t="rank-level"></p>
+        <p class="rname" data-t="rank-name"></p>
+        <div class="meter" role="progressbar" aria-label="Progress to next rank" aria-valuemin="0" aria-valuemax="100" data-meter><i data-fill></i></div>
+        <p class="sub num" data-t="rank-text"></p>
+      </div>
+    </div>
+
+    <div class="stats" aria-label="Summary">
+      <div class="stat"><p class="eyebrow">Total saved</p><p class="v" id="st-saved"></p></div>
+      <div class="stat"><p class="eyebrow">Spend allowance</p><p class="v" id="st-spend"></p></div>
+      <div class="stat"><p class="eyebrow">Total received</p><p class="v" id="st-recv"></p></div>
+      <div class="stat"><p class="eyebrow">Badges earned</p><p class="v" id="st-badges"></p></div>
+    </div>
+    <p class="mt"><a href="#add">Add today's entry</a></p>
+  </section>
+
+  <!-- Add tab -->
+  <section class="wrap view" id="view-add" hidden>
+    <div class="sec-head">
+      <p class="eyebrow">Daily entry</p>
+      <h2>Add money or savings</h2>
+    </div>
+    <div class="two">
+      <form class="card" id="form-income" novalidate>
+        <h3>Money received</h3>
+        <p class="sub">Enter an amount. It splits 70% to spend and 30% to savings.</p>
+        <div class="field">
+          <label for="f-amt">Amount</label>
+          <div class="money"><span class="cur" data-cur></span><input id="f-amt" type="number" inputmode="decimal" min="0" step="any" placeholder="0"></div>
+        </div>
+        <div class="field">
+          <label for="f-date">Date</label>
+          <input id="f-date" type="date">
+        </div>
+        <div class="field">
+          <label for="f-note">Note, optional</label>
+          <input id="f-note" type="text" maxlength="60" placeholder="Salary, gift, side work">
+        </div>
+        <p class="err" id="err-amt" role="alert" hidden></p>
+        <div class="ratio" aria-hidden="true"><i class="r-spend"></i><i class="r-save"></i></div>
+        <dl class="split">
+          <div><dt>Spend, 70%</dt><dd id="pv-spend">0</dd></div>
+          <div><dt>Save, 30%</dt><dd id="pv-save">0</dd></div>
+        </dl>
+        <button class="btn" type="submit">Split and save</button>
+      </form>
+
+      <form class="card" id="form-saving" novalidate>
+        <h3>Savings set aside</h3>
+        <p class="sub">Already put money away? Add it straight to your savings total.</p>
+        <div class="field">
+          <label for="s-amt">Amount saved</label>
+          <div class="money"><span class="cur" data-cur></span><input id="s-amt" type="number" inputmode="decimal" min="0" step="any" placeholder="0"></div>
+        </div>
+        <div class="field">
+          <label for="s-date">Date</label>
+          <input id="s-date" type="date">
+        </div>
+        <div class="field">
+          <label for="s-note">Note, optional</label>
+          <input id="s-note" type="text" maxlength="60" placeholder="Emergency fund, jar, bank deposit">
+        </div>
+        <label class="check" for="s-match"><input id="s-match" type="checkbox"><span>Also add the matching spend allowance so this amount keeps the 70/30 ratio</span></label>
+        <p class="hint" id="s-hint"></p>
+        <p class="err" id="err-sav" role="alert" hidden></p>
+        <button class="btn" type="submit">Add to savings</button>
+      </form>
+    </div>
+    <div class="notice" id="notice" role="status" aria-live="polite" hidden><span class="dot"></span><span id="notice-t"></span></div>
+  </section>
+
+  <!-- Ranks tab -->
+  <section class="wrap view" id="view-ranks" hidden>
+    <div class="sec-head">
+      <p class="eyebrow">Ranks</p>
+      <h2>Peasant to Emperor</h2>
+      <p class="sub" id="ladder-sub"></p>
+    </div>
+    <div class="card rank">
+      <span class="avatar lg" role="img" data-h="avatar"></span>
+      <div class="rank-t">
+        <p class="eyebrow" data-t="rank-level"></p>
+        <p class="rname" data-t="rank-name"></p>
+      </div>
+      <div class="rank-p">
+        <p class="eyebrow">Progress to next rank</p>
+        <div class="meter" role="progressbar" aria-label="Progress to next rank" aria-valuemin="0" aria-valuemax="100" data-meter><i data-fill></i></div>
+        <p class="sub num" data-t="rank-text"></p>
+      </div>
+    </div>
+    <ul class="ladder" id="ladder"></ul>
+  </section>
+
+  <!-- Badges tab -->
+  <section class="wrap view" id="view-badges" hidden>
+    <div class="sec-head">
+      <p class="eyebrow">Badges</p>
+      <h2>Earned and locked</h2>
+      <p class="sub num" id="badge-sub"></p>
+    </div>
+    <ul class="badges" id="badges"></ul>
+  </section>
+
+  <!-- History tab -->
+  <section class="wrap view" id="view-history" hidden>
+    <div class="sec-head">
+      <p class="eyebrow">History</p>
+      <h2>Every entry</h2>
+      <p class="sub">Removing an entry asks you to confirm first.</p>
+    </div>
+    <ul class="hist" id="hist"></ul>
+  </section>
+
+  <!-- Privacy -->
+  <section class="wrap view" id="view-privacy" hidden>
+    <article class="prose">
+      <p class="eyebrow">Legal</p>
+      <h1>Privacy policy</h1>
+      <p class="fine">Last updated November 13, 2026.</p>
+      <h2>What Seventy Thirty stores</h2>
+      <p>The name, age, gender and currency you enter when you create a profile, and every amount, note and date you log afterwards.</p>
+      <h2>Where it is stored</h2>
+      <p>Everything is saved in your browser's local storage on this device. Seventy Thirty does not send your profile or entries to a server. There are no accounts, no analytics, no advertising and no tracking cookies.</p>
+      <h2>Fonts</h2>
+      <p>The page loads its fonts from Google Fonts. When it does, Google receives your IP address and basic browser details, as described in Google's own privacy policy.</p>
+      <h2>Shared devices</h2>
+      <p>There is no password. Anyone who uses this browser profile can open your ledger by entering the same name. Do not use it on a device you share unless you sign out and delete your data afterwards.</p>
+      <h2>Your choices</h2>
+      <ul>
+        <li>Remove any single entry from the History tab.</li>
+        <li>Sign out to leave the ledger. Your data stays on this device.</li>
+        <li>Delete everything below, or clear this site's data in your browser settings.</li>
+      </ul>
+      <button class="btn btn-quiet" type="button" id="wipe">Delete all data on this device</button>
+      <p class="fine mt" id="wipe-msg" role="status"></p>
+    </article>
+  </section>
+
+  <!-- Terms -->
+  <section class="wrap view" id="view-terms" hidden>
+    <article class="prose">
+      <p class="eyebrow">Legal</p>
+      <h1>Terms and conditions</h1>
+      <p class="fine">Last updated November 13, 2026.</p>
+      <h2>Using Seventy Thirty</h2>
+      <p>Seventy Thirty is a personal tool for tracking savings with a 70% spend and 30% save guideline. You may use it for your own record keeping.</p>
+      <h2>Not financial advice</h2>
+      <p>The split, ranks and badges are budgeting aids. They are not financial, tax or legal advice, and every money decision remains yours.</p>
+      <h2>Your records</h2>
+      <p>You enter all figures yourself. The app does not connect to banks or check what you type. Records live in your browser, so clearing site data or switching devices can remove them. Keep your own backup of anything important.</p>
+      <h2>Ranks and badges</h2>
+      <p>Ranks and badges are game features for motivation. They have no monetary value and cannot be exchanged for anything.</p>
+      <h2>Availability and changes</h2>
+      <p>The service is provided as is, without promises that it will be uninterrupted or free of errors. Features may change or be removed.</p>
+      <h2>Liability</h2>
+      <p>To the extent the law allows, the makers of Seventy Thirty are not liable for losses that result from using it or from losing the data stored in your browser.</p>
+    </article>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div>
+      <p>Seventy Thirty keeps your records in this browser.</p>
+      <p id="storage-note" hidden>This window blocks saved data, so entries will be lost when you close the page.</p>
+    </div>
+    <div class="foot-links">
+      <a href="#privacy">Privacy policy</a>
+      <a href="#terms">Terms and conditions</a>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js" defer></script>
+
+</body></html>
